@@ -7,21 +7,19 @@
     <link rel="stylesheet" href="./src/css/style.css" />
   </head>
   <body>
-    <div class="stopwatch">
-      <div class="stopwatch__title"><h2 class="stopwatch__time"></h2></div>
-
-      <ul class="stopwatch__actions">
-        <li class="stopwatch__action">
-          <button class="action" data-action="start">почати</button>
-        </li>
-        <li class="stopwatch__action">
-          <button class="action" data-action="pause">пауза</button>
-        </li>
-        <li class="stopwatch__action">
-          <button class="action" data-action="clear">очистити</button>
-        </li>
-      </ul>
+    <!-- 1 -->
+    <div class="timer-box">
+      <h2>Таймер 1 (1 година)</h2>
+      <div id="timer1" class="timer-display">01:00:00</div>
+      <button id="startTimer1" class="btn">Старт</button>
     </div>
+    <!-- 2 -->
+    <div class="timer-box">
+      <h2>Таймер 2 (30 секунд)</h2>
+      <div id="timer2" class="timer-display">30.000</div>
+      <button id="startTimer2" class="btn">Старт</button>
+    </div>
+
     <script type="module" src="./src/js/index.js"></script>
   </body>
 </html>

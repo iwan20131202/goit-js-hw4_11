@@ -1,60 +1,56 @@
 body {
-  font-family: Tahoma sans-serif;
-  background: linear-gradient(135deg, #7e01a4, #055bc5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background: linear-gradient(135deg, #4c6ef5, #b197fc);
+  font-family: 'Arial', sans-serif;
+  padding: 40px;
+  color: #fff;
 }
-.stopwatch {
-  background-color: rgb(74, 1, 148);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 220px;
-  width: 500px;
-  border-radius: 20px;
-  box-shadow: 0 8px 25px rgba(48, 45, 45, 0.15);
-  padding: 20px;
+
+.timer-box {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 25px;
+  border-radius: 15px;
+  width: 300px;
+  margin: 20px auto;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
-.stopwatch__time {
-  font-size: 44px;
-  margin-bottom: 30px;
-  font-weight: 500;
-  color: rgb(17, 17, 17);
+
+.timer-display {
+  font-size: 40px;
+  font-weight: bold;
+  margin: 15px 0;
+  padding: 10px;
+  border-radius: 10px;
+  transition: 0.4s ease;
 }
-.stopwatch__actions {
-  display: flex;
-  gap: 20px;
-  padding: 0;
-  margin: 0;
-}
-.stopwatch__action {
-  list-style: none;
-}
-.action {
-  font-size: 16px;
-  padding: 12px 25px;
+
+.btn {
+  background: #ffd43b;
   border: none;
+  padding: 12px 20px;
   border-radius: 8px;
-  transition: background-color 0.5s ease-out;
-  box-shadow: 0 8px 25px rgba(48, 45, 45, 0.15);
+  cursor: pointer;
+  font-size: 18px;
+  transition: 0.3s;
 }
-[data-action="start"] {
-  background-color: rgb(3, 84, 107);
-  &:hover {
-    background-color: rgb(1, 84, 109);
+
+.btn:hover {
+  background: #fcc419;
+}
+/* 2 */
+.flash {
+  animation: flashAnim 0.4s infinite alternate;
+}
+
+@keyframes flashAnim {
+  from {
+    color: #fff;
+    transform: scale(1);
   }
-}
-[data-action="pause"] {
-  background-color: rgb(76, 160, 40);
-  &:hover {
-    background-color: rgb(53, 192, 94);
-  }
-}
-[data-action="clear"] {
-  background-color: rgb(169, 31, 31);
-  &:hover {
-    background-color: rgb(192, 32, 32);
+
+  to {
+    color: #ff6b6b;
+    transform: scale(1.1);
   }
 }

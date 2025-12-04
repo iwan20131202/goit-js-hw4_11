@@ -1,56 +1,54 @@
-const timeCatch = (ms) => {
-  const mils = Math.floor(ms % 1000);
-  const sec = Math.floor((ms / 1000) % 60);
-  const min = Math.floor((ms / 1000 / 60) % 60);
-  const hours = Math.floor((ms / 1000 / 60 / 60) % 24);
+// 1
+const timer1Display = document.getElementById("timer1");
+const startTimer1 = document.getElementById("startTimer1");
 
-  return `
-  ${String(hours).padStart(2, 0)}:${String(min).padStart(2, 0)}:${String(
-    sec
-  ).padStart(2, 0)}.${String(mils).padStart(3, 0)}`;
-};
+startTimer1.addEventListener("click", () => {
+  let totalSeconds = 3600;
+  timer1Display.style.color = "#fff";
 
-// stopwatch
+  const interval = setInterval(() => {
+    totalSeconds -= 60;
 
-const stopwatchDisplay = document.querySelector(".stopwatch__time");
-const stopwatchActions = document.querySelector(".stopwatch__actions");
+    const h = String(Math.floor(totalSeconds / 3600)).padStart(2, "0");
+    const m = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, "0");
+    const s = "00";
 
-let TIME = 0;
-const TIME_STEP = 50;
+    timer1Display.textContent = `${h}:${m}:${s}`;
 
-stopwatchDisplay.textContent = timeCatch(TIME);
+    if (totalSeconds === 1800) {
+      timer1Display.style.color = "#ff6b6b";
+      alert("Залишилось менше половини часу!");
+    }
 
-let intervalId;
-let countTime = TIME;
+    if (totalSeconds <= 0) {
+      clearInterval(interval);
+      timer1Display.textContent = "00:00:00";
+    }
+  }, 60000);
+});
+// 2
+const timer2Display = document.getElementById("timer2");
+const startTimer2 = document.getElementById("startTimer2");
 
-const updateTime = () => {
-  countTime += TIME_STEP;
-  stopwatchDisplay.textContent = timeCatch(countTime);
-};
+startTimer2.addEventListener("click", () => {
+  let time = 30000;
+  startTimer2.disabled = true;
+  timer2Display.classList.remove("flash");
 
-const handleStopWatchControl = (e) => {
-  const target = e.target;
+  const interval = setInterval(() => {
+    time -= 1;
 
-  if (target.tagName !== "BUTTON") return;
+    timer2Display.textContent = (time / 1000).toFixed(3);
 
-  const action = target.dataset.action;
+    if (time <= 10000) {
+      timer2Display.classList.add("flash");
+    }
 
-  //   початок секундоміра
-  if (action === "start") {
-    if (intervalId) return;
-    intervalId = setInterval(updateTime, TIME_STEP);
-  }
-
-  if (action === "pause") {
-    clearInterval(intervalId);
-    intervalId = null;
-  }
-
-  if (action === "clear") {
-    clearInterval(intervalId);
-    countTime = 0;
-    stopwatchDisplay.textContent = timeCatch(0);
-    intervalId = null;
-  }
-};
-stopwatchActions.addEventListener("click", handleStopWatchControl);
+    if (time <= 0) {
+      clearInterval(interval);
+      timer2Display.textContent = "0.000";
+      startTimer2.disabled = false;
+      timer2Display.classList.remove("flash");
+    }
+  }, 1);
+});
